@@ -13,50 +13,20 @@ import {
 import { makeImagePath } from "../utils";
 import { useHistory, useRouteMatch } from "react-router-dom";
 import TVSlider from "../Components/TVSlider";
+import {
+	Banner,
+	BigCover,
+	BigOverview,
+	BigTitle,
+	Loader,
+	Overlay,
+	Overview,
+	Title,
+	Vote,
+	Wrapper,
+} from "./Home";
 
-const Wrapper = styled.div`
-	background: black;
-	padding-bottom: 200px;
-`;
-
-const Loader = styled.div`
-	height: 20vh;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-`;
-
-const Banner = styled.div<{ bgPhoto: string }>`
-	height: 100vh;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	padding: 60px;
-	background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)),
-		url(${(props) => props.bgPhoto});
-	background-size: cover;
-`;
-
-const Title = styled.h2`
-	font-size: 68px;
-	margin-bottom: 20px; ;
-`;
-
-const Overview = styled.p`
-	font-size: 30px;
-	width: 50%;
-`;
-
-const Overlay = styled(motion.div)`
-	position: fixed;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.5);
-	opacity: 0;
-`;
-
-const BigTV = styled(motion.div)`
+export const BigTV = styled(motion.div)`
 	position: absolute;
 	width: 40vw;
 	height: 80vh;
@@ -66,38 +36,6 @@ const BigTV = styled(motion.div)`
 	border-radius: 15px;
 	overflow: hidden;
 	background-color: ${(props) => props.theme.black.lighter};
-`;
-
-const BigCover = styled.div`
-	width: 100%;
-	background-size: cover;
-	background-position: center center;
-	height: 400px;
-`;
-interface BigTitleProps {
-	len: number;
-}
-const BigTitle = styled.h3<BigTitleProps>`
-	color: ${(props) => props.theme.white.lighter};
-	padding: 20px;
-	font-size: ${(props) =>
-		props.len < 20 ? "40px" : props.len > 35 ? "18px" : "23px"};
-	position: relative;
-	top: -80px;
-	margin-top: ${(props) =>
-		props.len < 20 ? "0px" : props.len > 35 ? "20px" : "14px"};
-`;
-
-const BigOverview = styled.p`
-	padding: 20px;
-	position: relative;
-	top: -80px;
-	color: ${(props) => props.theme.white.lighter};
-`;
-
-const Vote = styled.span`
-	font-size: 17px;
-	padding: 10px;
 `;
 
 function TV() {

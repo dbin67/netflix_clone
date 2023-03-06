@@ -11,11 +11,14 @@ import SearchMovieSlider from "../Components/SearchMovieSlider";
 import SearchTVSlider from "../Components/SearchTVSlider";
 import { motion, AnimatePresence, useScroll } from "framer-motion";
 import { makeImagePath } from "../utils";
-
-const Wrapper = styled.div`
-	background: black;
-	padding-bottom: 200px;
-`;
+import {
+	BigCover,
+	BigOverview,
+	BigTitle,
+	Overlay,
+	Vote,
+	Wrapper,
+} from "./Home";
 
 const Result = styled.div`
 	height: 50vh;
@@ -27,16 +30,7 @@ const Result = styled.div`
 	font-weight: 400;
 `;
 
-const Overlay = styled(motion.div)`
-	position: fixed;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.5);
-	opacity: 0;
-`;
-
-const BigTV = styled(motion.div)`
+const BigItem = styled(motion.div)`
 	position: absolute;
 	width: 40vw;
 	height: 80vh;
@@ -46,40 +40,6 @@ const BigTV = styled(motion.div)`
 	border-radius: 15px;
 	overflow: hidden;
 	background-color: ${(props) => props.theme.black.lighter};
-`;
-
-const BigCover = styled.div`
-	width: 100%;
-	background-size: cover;
-	background-position: center center;
-	height: 400px;
-`;
-
-interface BigTitleProps {
-	len: number;
-}
-
-const BigTitle = styled.h3<BigTitleProps>`
-	color: ${(props) => props.theme.white.lighter};
-	padding: 20px;
-	font-size: ${(props) =>
-		props.len < 20 ? "40px" : props.len > 35 ? "18px" : "23px"};
-	position: relative;
-	top: -80px;
-	margin-top: ${(props) =>
-		props.len < 20 ? "0px" : props.len > 35 ? "20px" : "14px"};
-`;
-
-const BigOverview = styled.p`
-	padding: 20px;
-	position: relative;
-	top: -80px;
-	color: ${(props) => props.theme.white.lighter};
-`;
-
-const Vote = styled.span`
-	font-size: 17px;
-	padding: 10px;
 `;
 
 function Search() {
@@ -136,7 +96,7 @@ function Search() {
 									exit={{ opacity: 0 }}
 									animate={{ opacity: 1 }}
 								/>
-								<BigTV
+								<BigItem
 									style={{ top: scrollY.get() + 100 }}
 									layoutId={bigItemMatch.params.id}
 								>
@@ -178,7 +138,7 @@ function Search() {
 											</BigOverview>
 										</>
 									)}
-								</BigTV>
+								</BigItem>
 							</>
 						) : null}
 					</AnimatePresence>
